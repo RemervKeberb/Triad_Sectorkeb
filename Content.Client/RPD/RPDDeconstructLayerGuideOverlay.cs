@@ -34,16 +34,10 @@ public sealed class RPDDeconstructLayerGuideOverlay : Overlay
     private readonly IEntityManager _entMan;
     private readonly IInputManager _input;
     private readonly IEyeManager _eye;
-    private readonly IMapManager _mapManager;
     private readonly IPlayerManager _player;
     private readonly IPrototypeManager _proto;
     private readonly SharedMapSystem _mapSystem;
     private readonly SharedTransformSystem _transform;
-
-    // Mirror the construct guide's geometry and color (AlignRPDAtmosPipeLayers) so both previews read identically.
-    private const float GuideRadius = 0.1f;
-    private const float GuideOffsetInTileUnits = 7f / 32f;
-    private readonly Color _guideColor = new(0, 0, 0.5785f);
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
@@ -52,7 +46,6 @@ public sealed class RPDDeconstructLayerGuideOverlay : Overlay
         _entMan = IoCManager.Resolve<IEntityManager>();
         _input = IoCManager.Resolve<IInputManager>();
         _eye = IoCManager.Resolve<IEyeManager>();
-        _mapManager = IoCManager.Resolve<IMapManager>();
         _player = IoCManager.Resolve<IPlayerManager>();
         _proto = IoCManager.Resolve<IPrototypeManager>();
         _mapSystem = _entMan.System<SharedMapSystem>();
@@ -84,7 +77,7 @@ public sealed class RPDDeconstructLayerGuideOverlay : Overlay
         if (mouseMap.MapId != args.MapId)
             return;
 
-        if (!_mapManager.TryFindGridAt(mouseMap, out var gridUid, out var grid))
+        if (!_mapSystem.TryFindGridAt(mouseMap, out var gridUid, out var grid))
             return;
 
         // Hide the guide when the cursor is out of reach, matching the construct preview's range gate.
@@ -99,15 +92,8 @@ public sealed class RPDDeconstructLayerGuideOverlay : Overlay
         var tileCenterLocal = new Vector2((indices.X + 0.5f) * tileSize, (indices.Y + 0.5f) * tileSize);
         var worldPosition = _mapSystem.LocalToWorld(gridUid, grid, tileCenterLocal);
 
-        // Flank the center dot along a screen-relative axis, flipping with grid rotation so the dots stay put on
-        // screen as the grid turns (identical math to AlignRPDAtmosPipeLayers.Render).
+        // Three guide dots showing the cursor-quadrant layer aim; see RPDLayerGuide.
         var gridRotation = _transform.GetWorldRotation(gridUid);
-        var direction = (_eye.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-        var multi = (direction == Direction.North || direction == Direction.South) ? -1f : 1f;
-        var offset = gridRotation.RotateVec(new Vector2(multi * GuideOffsetInTileUnits, GuideOffsetInTileUnits));
-
-        args.WorldHandle.DrawCircle(worldPosition, GuideRadius, _guideColor);
-        args.WorldHandle.DrawCircle(worldPosition + offset, GuideRadius, _guideColor);
-        args.WorldHandle.DrawCircle(worldPosition - offset, GuideRadius, _guideColor);
+        RPDLayerGuide.Draw(args.WorldHandle, worldPosition, gridRotation, _eye.CurrentEye.Rotation);
     }
 }
