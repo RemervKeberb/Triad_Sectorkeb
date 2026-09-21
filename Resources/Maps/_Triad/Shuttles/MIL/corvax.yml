@@ -17554,8 +17554,6 @@ entities:
       pos: -11.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Port EVA
   - uid: 2425
     components:
@@ -17564,8 +17562,6 @@ entities:
       pos: 11.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Starboard EVA
   - uid: 2426
     components:
@@ -17573,8 +17569,6 @@ entities:
       pos: 7.5,19.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Medbay
   - uid: 2427
     components:
@@ -17582,8 +17576,6 @@ entities:
       pos: 2.5,-15.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Briefing Room
   - uid: 2428
     components:
@@ -17591,8 +17583,6 @@ entities:
       pos: 0.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Fabrication
   - uid: 2429
     components:
@@ -17601,8 +17591,6 @@ entities:
       pos: -4.5,13.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: CIC
   - uid: 2430
     components:
@@ -17611,8 +17599,6 @@ entities:
       pos: 1.5,22.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Bar Hallway
   - uid: 2431
     components:
@@ -17621,8 +17607,6 @@ entities:
       pos: 3.5,-1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Starboard Hallway
   - uid: 2432
     components:
@@ -17631,8 +17615,6 @@ entities:
       pos: -3.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Fore Port Hallway
   - uid: 2433
     components:
@@ -17641,8 +17623,6 @@ entities:
       pos: 3.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Fore Starboard Hallway
   - uid: 2434
     components:
@@ -17659,8 +17639,6 @@ entities:
       pos: 1.5,-5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Engineering
   - uid: 2436
     components:
@@ -17669,8 +17647,6 @@ entities:
       pos: -2.5,-18.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Ready Room
   - uid: 2437
     components:
@@ -17679,8 +17655,6 @@ entities:
       pos: -10.5,-21.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Aft Port EVA
   - uid: 2438
     components:
@@ -17689,8 +17663,6 @@ entities:
       pos: 10.5,-21.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Aft Starboard EVA
   - uid: 2439
     components:
@@ -17699,8 +17671,6 @@ entities:
       pos: -1.5,-20.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       address: Aft EVA
 - proto: SurveillanceCameraRouterGeneral
   entities:
